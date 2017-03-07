@@ -121,3 +121,4 @@ github
 src
 workspace
 .vim/bundle/
+.gitconfig
