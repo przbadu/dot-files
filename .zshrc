@@ -28,10 +28,6 @@ source $ZSH/oh-my-zsh.sh
 # Disable auto-correct
 unsetopt correct_all
 
-# Load up chruby, auto-load ruby version, and set default
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-chruby ruby-2.3
-
 # Load up rbenv?
 eval "$(rbenv init -)"
 
@@ -44,3 +40,9 @@ if which tmux 2>&1 >/dev/null; then
     tmux attach -t hack || tmux new -s hack; exit
   fi
 fi
+
+# vi or vim is firing old vim editor, let change it to open
+# brew's installed vim for better support of libraries
+alias vi='/usr/local/bin/vim'
+alias vim='/usr/local/bin/vim'
+alias vimdiff='/usr/local/bin/vimdiff'

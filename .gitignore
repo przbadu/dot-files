@@ -120,3 +120,4 @@ VirtualBoxVMs
 github
 src
 workspace
+.vim/bundle/
