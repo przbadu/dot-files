@@ -35,14 +35,19 @@ eval "$(rbenv init -)"
 ssh-add -A &> /dev/null
 
 # Always work in a tmux session if tmux is installed
-if which tmux 2>&1 >/dev/null; then
-  if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
-    tmux attach -t hack || tmux new -s hack; exit
-  fi
-fi
+# if which tmux 2>&1 >/dev/null; then
+#   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+#     tmux attach -t hack || tmux new -s hack; exit
+#   fi
+# fi
 
 # vi or vim is firing old vim editor, let change it to open
 # brew's installed vim for better support of libraries
 alias vi='/usr/local/bin/vim'
 alias vim='/usr/local/bin/vim'
 alias vimdiff='/usr/local/bin/vimdiff'
+alias ccba='/Volumes/BACKUP/PROJECTS/UPWORK/Buzzware/APPS'
+
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh

@@ -9,32 +9,44 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-run-interactive'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'fatih/vim-go'
-Plugin 'janko-m/vim-test'
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'msanders/snipmate.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'scrooloose/syntastic'
-Plugin 'slim-template/vim-slim'
-Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-endwise'
+" unix commands like: :Remove, :Unlink, :Move, :Rename, :Chmod, :Mkdir
+" :Find, :Locate, :Wall, :Sudowrite, :Sudoedit
 Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-fugitive' " TODO: Make a choice between fugitive and vimagit
+Plugin 'tpope/vim-rhubarb'  " :Gbrowse to open current code in browser
+Plugin 'tpope/vim-projectionist' " :A, :AS, :AT, :AV {filename} to jump to alternate file
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/tComment'
+Plugin 'terryma/vim-multiple-cursors'
+
+" rails specific
+Plugin 'janko-m/vim-test'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rake'
+Plugin 'vim-ruby/vim-ruby'
+
+" JS frameworks
 Plugin 'pangloss/vim-javascript'
 Plugin 'leshill/vim-json'
-Plugin 'msanders/snipmate.vim'
-Plugin 'mxw/vim-jsx'
 Plugin 'dsawardekar/portkey'
 Plugin 'dsawardekar/ember.vim'
-Plugin 'mileszs/ack.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+
+" React js specific
+Plugin 'mxw/vim-jsx'
+
+" Testing RESTfull apis
+Plugin 'diepm/vim-rest-console'
+
+" sidebar
+Plugin 'scrooloose/nerdtree'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
