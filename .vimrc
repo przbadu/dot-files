@@ -195,11 +195,16 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-" mustache/handlebars
-let g:mustache_abbreviations = 1
-" Borrowed from https://github.com/mustache/vim-mustache-handlebars/blob/master/ftdetect/mustache.vim#L3
-" It should suppose to work automatically
-au  BufNewFile,BufRead *.handlebars,*.hbs set filetype=html.handlebars syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
-
 " remap vrc_trigger (vim rest console) to c-c
 let g:vrc_trigger = '<C-k>'
+
+" TODO: fix-it
+" Filetype detection is broken somehow, 
+" please find it and remove below manual filetype detections 
+" after finding and fixing the issue
+" Borrowed from https://github.com/mustache/vim-mustache-handlebars/blob/master/ftdetect/mustache.vim#L3
+au BufNewFile,BufRead *.handlebars,*.hbs set filetype=html.handlebars syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
+au BufNewFile,BufRead *.rest set ft=rest " borrowed from: https://github.com/diepm/vim-rest-console/blob/master/ftdetect/rest.vim
+
+" mustache/handlebars
+let g:mustache_abbreviations = 1
