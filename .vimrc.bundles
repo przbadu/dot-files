@@ -25,6 +25,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/tComment'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mattn/emmet-vim'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'craigemery/vim-autotag'
+Plugin 'majutsushi/tagbar'
 
 " rails specific
 Plugin 'janko-m/vim-test'

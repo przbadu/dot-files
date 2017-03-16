@@ -8,6 +8,7 @@ endif
 
 filetype plugin indent on
 set autoindent                    " set auto indent
+set backspace=2   " Backspace deletes like most programs in insert mode
 set ts=2                          " set indent to 2 spaces
 set shiftwidth=2
 set expandtab                     " use spaces, not tab characters
@@ -98,22 +99,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " file highlighting
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " unmap F1 help
 nmap <F1> <nop>
@@ -126,7 +114,10 @@ nnoremap Q <nop>
 vnoremap . :norm.<cr>
 
 " map markdown preview
-map <leader>m :!open -a "Marked 2" %<cr><cr>
+" map <leader>m :!open -a "Marked 2" %<cr><cr>
+" map <leader>m :!open -a "Mou" %<cr><cr>
+" let vim_markdown_preview_hotkey='<leader>m'
+map <leader>m :!open -a "Macdown" %<cr><cr>
 
 " map git commands
 map <leader>b :Gblame<cr>
@@ -137,7 +128,7 @@ map <leader>d :!clear && git diff %<cr>
 map <leader>a :Ag!<space>
 
 " clear the command line and search highlighting
-noremap <C-l> :nohlsearch<CR>
+noremap <leader>; :nohlsearch<CR>
 
 " toggle spell check with <F5>
 map <F5> :setlocal spell! spelllang=en_us<cr>
@@ -153,9 +144,9 @@ endif
 
 " jump to last position in file
 autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal g`\"" |
+      \ endif
 
 " multi-purpose tab key (auto-complete)
 function! InsertTabWrapper()
@@ -192,7 +183,7 @@ map <leader>n :call RenameFile()<cr>
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>r :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
 " remap vrc_trigger (vim rest console) to c-c
@@ -208,3 +199,63 @@ au BufNewFile,BufRead *.rest set ft=rest " borrowed from: https://github.com/die
 
 " mustache/handlebars
 let g:mustache_abbreviations = 1
+
+" Open new split panes to right and bottom, which feels more natural
+" set splitbelow
+set splitright
+" Auto resize Vim splits to active split
+set winwidth=104
+set winheight=5
+set winminheight=5
+set winheight=999
+
+" html editing
+set matchpairs+=<:>
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+"Use enter to create new lines w/o entering insert mode
+nnoremap <CR> o<Esc>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+" Ag will search from project root bind \ (backward slash) to grep shortcut
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+" Ag will search from project root
+let g:ag_working_path_mode="r"
+
+"Map Ctrl + S to save in any mode
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+" Also map leader + s
+map <leader>s <C-S>
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+
+" switch between last two files
+nnoremap <leader><leader> <c-^>
+
+" tagbar toggle
+nnoremap <F8> :TagbarToggle<CR>
+" ctrlP + tagbar
+nnoremap <leader>. :CtrlPTag<cr>
+
+" autoindent with <leader>i
+" goto first line
+" indent upto last line
+" '' to move back to last cursor
+nnoremap <C-i> <esc>gg=G''

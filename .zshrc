@@ -47,6 +47,7 @@ alias vi='/usr/local/bin/vim'
 alias vim='/usr/local/bin/vim'
 alias vimdiff='/usr/local/bin/vimdiff'
 alias ccba='/Volumes/BACKUP/PROJECTS/UPWORK/Buzzware/APPS'
+alias c='/Volumes/BACKUP/PROJECTS'
 
 # NVM
 export NVM_DIR=~/.nvm
